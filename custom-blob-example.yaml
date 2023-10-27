@@ -1,0 +1,6 @@
+apiVersion: crossplane.example.com/v1alpha1
+kind: Blob
+metadata:
+  name: custom-blob-example-i-wrote
+spec:
+  location: "us-east-1"

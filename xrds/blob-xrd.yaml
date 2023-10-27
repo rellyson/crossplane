@@ -1,0 +1,35 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: blobs.crossplane.example.com
+spec:
+  group: crossplane.example.com
+  names:
+    kind: Blob
+    plural: blobs
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            metadata:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+                - name
+            spec:
+              type: object
+              properties:
+                location:
+                  type: string
+                  oneOf:
+                    - pattern: "^us-east-1$"
+                    - pattern: "^us-east-2$"
+      served: true
+      referenceable: true
+  claimNames:
+    kind: BlobClaim
+    plural: blobclaim
